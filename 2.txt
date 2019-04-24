@@ -1,0 +1,57 @@
+#include<Keypad.h>
+const byte ROWS = 4;
+const byte COLS = 4;
+char keys[ROWS][COLS] = {
+  {'F', 'E', 'D', 'C'}, {'B', '3', '6', '9'},
+  {'A', '2', '5', '8'}, {'0', '1', '4', '7'}
+};
+byte rowPins[ROWS] = {11, 10, 9, 8};
+byte colPins[COLS] = {15, 14, 13, 12};
+int tune;
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  char key = keypad.getKey();
+    if (key == '0')
+      tune = 131;
+    if (key == '1')
+      tune = 139;
+    if (key == '2')
+      tune = 147;
+    if (key == '3')
+      tune = 156;
+    if (key == '4')
+      tune = 175;
+    if (key == '5')
+      tune = 185;
+    if (key == '6')
+      tune = 196;
+    if (key == '7')
+      tune = 208;
+    if (key == '8')
+      tune = 220;
+    if (key == '9')
+      tune = 233;
+    if (key == 'A')
+      tune = 262;
+    if (key == 'B')
+      tune = 277;
+    if (key == 'C')
+      tune = 294;
+    if (key == 'D')
+      tune = 311;
+    if (key == 'E')
+      tune = 330;
+    if (key == 'F')
+      tune = 349;
+ if (key != NO_KEY) {
+  tone(5,tune);
+  delay(1500);
+  noTone(5);
+  
+  } 
+}
